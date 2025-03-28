@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",                        // Ideal para TypeORM + async/await
+    "module": "CommonJS",                      // Compatível com Node.js
+    "rootDir": "./src",                        // Pasta de entrada do código TS
+    "outDir": "./dist",                        // Pasta de saída JS compilado
+    "esModuleInterop": true,                   // Para funcionar com readline-sync e outras libs
+    "experimentalDecorators": true,            // NECESSÁRIO para TypeORM
+    "emitDecoratorMetadata": true,             // NECESSÁRIO para TypeORM
+    "strict": true,                            // Ativa verificação rigorosa de tipos
+    "forceConsistentCasingInFileNames": true,  // Evita problemas de importação entre OS
+    "skipLibCheck": true                       // Ignora type-check em libs externas
+  },
+  "include": ["src"]
+}

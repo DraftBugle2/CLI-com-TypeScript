@@ -1,0 +1,19 @@
+{
+    "name": "atividade-typescript",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "dependencies": {
+      "readline-sync": "^1.4.10",
+      "typescript": "^5.8.2"
+    },
+    "devDependencies": {
+      "@types/node": "^22.13.14",
+      "@types/readline-sync": "^1.4.8"
+    },
+    "scripts": {
+      "build": "tsc",
+      "start": "node dist/cli/menu.js"
+    }
+  }
+  

@@ -10,7 +10,7 @@ class ProdutoService {
     criar(nome, preco, quantidade, categoriaId, descricao) {
         const categoria = this.categoriaService.buscarPorIdOuNome(categoriaId);
         if (!categoria) {
-            console.log("⚠️ Categoria não encontrada.");
+            console.log("⚠️ Categoria nao encontrada.");
             return null;
         }
         const agora = new Date();

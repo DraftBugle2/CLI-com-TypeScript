@@ -1,4 +1,4 @@
-# 📝 Questão 1: CLI com TypeScript (Persistência em Memória)
+# 📝 Projeto 1: CLI com TypeScript (Persistência em Memória)
 
 ## 📌 Descrição do Projeto
 Este projeto é uma aplicação de linha de comando (CLI) feita com **TypeScript**, com o objetivo de gerenciar um pequeno inventário de produtos e categorias. A persistência é feita **em memória**, ou seja, os dados são perdidos ao encerrar a aplicação.

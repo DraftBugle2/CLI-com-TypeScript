@@ -14,5 +14,5 @@ function promptNumero(mensagem) {
     return parseFloat(readline_sync_1.default.question(mensagem));
 }
 function mostrarMenu(opcoes) {
-    return readline_sync_1.default.keyInSelect(opcoes, 'Escolha uma opção:');
+    return readline_sync_1.default.keyInSelect(opcoes, 'Escolha uma opcao:');
 }

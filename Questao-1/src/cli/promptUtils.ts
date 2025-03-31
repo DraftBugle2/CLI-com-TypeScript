@@ -9,5 +9,5 @@ export function promptNumero(mensagem: string): number {
 }
 
 export function mostrarMenu(opcoes: string[]): number {
-  return readlineSync.keyInSelect(opcoes, 'Escolha uma opção:');
+  return readlineSync.keyInSelect(opcoes, 'Escolha uma opcao:');
 }

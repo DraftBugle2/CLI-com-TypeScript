@@ -16,7 +16,7 @@ export class ProdutoService {
   ): Produto | null {
     const categoria = this.categoriaService.buscarPorIdOuNome(categoriaId);
     if (!categoria) {
-      console.log("⚠️ Categoria não encontrada.");
+      console.log("⚠️ Categoria nao encontrada.");
       return null;
     }
 

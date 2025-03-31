@@ -15,25 +15,29 @@ async function main() {
     const produtoRepo = data_source_1.AppDataSource.getRepository(Produto_js_1.Produto);
     let sair = false;
     while (!sair) {
+        console.log("\n==== MENU PRINCIPAL ====");
         const opcoes = [
-            "Criar categoria",
-            "Listar categorias",
-            "Criar produto",
-            "Listar produtos",
+            "Criar Categoria",
+            "Listar Categorias",
+            "Criar Produto",
+            "Listar Produtos",
+            "Buscar Produto por Nome",
+            "Remover Produto",
             "Sair"
         ];
-        const escolha = readline_sync_1.default.keyInSelect(opcoes, "Escolha uma opção:");
+        const escolha = readline_sync_1.default.keyInSelect(opcoes, "Escolha uma opcao:", { cancel: "CANCEL" });
         console.clear();
         switch (escolha) {
             case 0:
                 const nomeCat = readline_sync_1.default.question("Nome da categoria: ");
-                const descCat = readline_sync_1.default.question("Descrição (opcional): ");
+                const descCat = readline_sync_1.default.question("Descricao (opcional): ");
                 const novaCategoria = categoriaRepo.create({
                     nome: nomeCat,
                     descricao: descCat,
                     dataCriacao: new Date(),
                 });
                 await categoriaRepo.save(novaCategoria);
+                console.log("✅ Categoria criada com sucesso!");
                 break;
             case 1:
                 const categorias = await categoriaRepo.find();
@@ -41,13 +45,13 @@ async function main() {
                 break;
             case 2:
                 const nomeProd = readline_sync_1.default.question("Nome do produto: ");
-                const descProd = readline_sync_1.default.question("Descrição: ");
-                const preco = parseFloat(readline_sync_1.default.question("Preço: "));
+                const descProd = readline_sync_1.default.question("Descricao: ");
+                const preco = parseFloat(readline_sync_1.default.question("Preco: "));
                 const qtd = parseInt(readline_sync_1.default.question("Quantidade: "));
                 const catId = parseInt(readline_sync_1.default.question("ID da categoria: "));
                 const categoria = await categoriaRepo.findOneBy({ id: catId });
                 if (!categoria) {
-                    console.log("⚠️ Categoria não encontrada.");
+                    console.log("⚠️ Categoria nao encontrada.");
                     break;
                 }
                 const produto = produtoRepo.create({
@@ -60,13 +64,37 @@ async function main() {
                     dataAtualizacao: new Date()
                 });
                 await produtoRepo.save(produto);
+                console.log("✅ Produto criado com sucesso!");
                 break;
             case 3:
-                const produtos = await produtoRepo.find();
+                const produtos = await produtoRepo.find({ relations: ["categoria"] });
                 console.table(produtos);
                 break;
-            default:
+            case 4:
+                const buscaNome = readline_sync_1.default.question("Digite o nome do produto para buscar: ");
+                const encontrados = await produtoRepo.findBy({ nome: buscaNome });
+                if (encontrados.length > 0) {
+                    console.table(encontrados);
+                }
+                else {
+                    console.log("🔍 Nenhum produto encontrado com esse nome.");
+                }
+                break;
+            case 5:
+                const nomeRemover = readline_sync_1.default.question("Digite o nome do produto a ser removido: ");
+                const produtoRemover = await produtoRepo.findOneBy({ nome: nomeRemover });
+                if (!produtoRemover) {
+                    console.log("❌ Produto nao encontrado.");
+                    break;
+                }
+                await produtoRepo.remove(produtoRemover);
+                console.log("🗑️ Produto removido com sucesso.");
+                break;
+            case 6:
                 sair = true;
+                break;
+            default:
+                console.log("❌ Operacao cancelada.");
                 break;
         }
     }

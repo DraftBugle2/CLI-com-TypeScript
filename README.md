@@ -178,3 +178,10 @@ AppDataSource.initialize().then(async () => {
 ```
 
 > 💡 **Observação:** Esse exemplo utiliza SQLite para facilitar testes locais sem depender de configuração externa de banco de dados.
+
+---
+
+## 👥 Integrantes do Grupo
+
+- Leonardo Rodrigues Amorim Filho / UC23101012  
+- Leonardo Louzada de Melo / UC23100791
